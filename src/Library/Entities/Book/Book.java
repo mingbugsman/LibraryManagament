@@ -1,16 +1,20 @@
 package Library.Entities.Book;
 
+import java.time.LocalDate;
+
 public abstract class Book {
     private String IdBook;
     private String Title;
     private String Author;
     private int Quantity;
-
+    private boolean isAvailable; // check if quantity > 0
+    private boolean isLimited;
     public Book(String IdBook, String Title, String Author, int Quantity) {
         this.IdBook = IdBook;
         this.Title = Title;
         this.Author = Author;
         this.Quantity = Quantity;
+        this.isAvailable = true;
     }
     // ID book
 
@@ -47,14 +51,26 @@ public abstract class Book {
     public int getQuantity() {
         return Quantity;
     }
-
     public void setQuantity(int quantity) {
         Quantity = quantity;
     }
 
+    // isAvailable
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+
+    // abstract //
     public abstract double calculateRentalFee();
     public abstract String getTypeBook();
+    public abstract LocalDate DueReturnBook(LocalDate BorrowedDate);
 
+
+    // description
     public void DescriptionBook() {
         System.out.println(
                 "Name : "  + getTitle() + "\n" +

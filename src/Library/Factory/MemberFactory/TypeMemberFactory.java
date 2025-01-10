@@ -13,12 +13,12 @@ public class TypeMemberFactory implements MemberFactory {
     }
 
     @Override
-    public Member creeateStudentMember(String StudentID, String nameMember, String Id_user, String Address, String phoneNumber) {
+    public Member creeateStudentMember(String StudentID, String nameMember, String Id_user, String Address, String phoneNumber ) {
         return new StudentMember(StudentID, nameMember, Id_user, Address, phoneNumber);
     }
 
     @Override
-    public Member createPremiumMember(String nameMember, String Id_user, String Address, String phoneNumber) {
+    public Member createPremiumMember(String nameMember, String Id_user, String Address, String phoneNumber ) {
         return new PremiumMember(nameMember, Id_user, Address, phoneNumber);
     }
 }

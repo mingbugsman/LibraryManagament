@@ -1,5 +1,7 @@
 package Library.Entities.Book;
 
+import java.time.LocalDate;
+
 public class DigitalBook extends Book{
     private final double RentalFeePerAccess;
     public DigitalBook(String IdBook, String Title, String Author, int Quantity, double RentalFeePerAccess) {
@@ -14,6 +16,11 @@ public class DigitalBook extends Book{
 
     @Override
     public String getTypeBook() {
-        return "Digital";
+        return "digital";
+    }
+
+    @Override
+    public LocalDate DueReturnBook(LocalDate BorrowedDate) {
+        return null;
     }
 }

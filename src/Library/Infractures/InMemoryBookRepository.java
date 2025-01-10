@@ -48,19 +48,22 @@ public class InMemoryBookRepository implements IBookRepository {
         return this.Books;
     }
 
+
+    // searching book by Title
     @Override
     public List<Book> searchBookByTitle(String title) {
         if (Books.isEmpty() || title == null || title.trim().isEmpty()) {
             return List.of(); //return empty list book;
         }
-        return Books.stream().filter(book -> book.getTitle().contains(title.toLowerCase())).collect(Collectors.toList());
+        return Books.stream().filter(book -> book.getTitle().toLowerCase().contains(title.toLowerCase())).collect(Collectors.toList());
     }
 
+    // searching book by Author
     @Override
     public List<Book> searchBookByAuthor(String Author) {
         if (Books.isEmpty() || Author == null || Author.trim().isEmpty()) {
             return List.of(); //return empty list book;
         }
-        return Books.stream().filter(book -> book.getAuthor().contains(Author.toLowerCase())).collect(Collectors.toList());
+        return Books.stream().filter(book -> book.getAuthor().toLowerCase().contains(Author.toLowerCase())).collect(Collectors.toList());
     }
 }

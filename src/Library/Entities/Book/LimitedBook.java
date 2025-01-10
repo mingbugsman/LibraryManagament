@@ -1,5 +1,7 @@
 package Library.Entities.Book;
 
+import java.time.LocalDate;
+
 public class LimitedBook extends Book{
     private final double SpecialRentalFee;
 
@@ -15,6 +17,11 @@ public class LimitedBook extends Book{
 
     @Override
     public String getTypeBook() {
-        return "Limited";
+        return "limited";
+    }
+
+    @Override
+    public LocalDate DueReturnBook(LocalDate BorrowedDate) {
+        return null;
     }
 }

@@ -17,10 +17,10 @@ public class ManagerBook {
     public List<Book> getListBooks() {
         return _bookRepository.GetAllBooks();
     }
-
     public List<Book> searchBookByTitle(String title) {
         return _bookRepository.searchBookByAuthor(title);
     }
+    public List<Book> searchBookByAuthor(String author) {return _bookRepository.searchBookByAuthor(author);}
     // post
     public void AddNewBook(Book newBook) {
         _bookRepository.Add(newBook);

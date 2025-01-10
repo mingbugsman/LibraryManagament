@@ -1,30 +1,33 @@
 package Library.Entities.Member;
 
 import Library.Entities.Book.Book;
-import Library.Entities.Book.NormalBook;
+import Library.UseCasesForLibrary.BorrowStrategy.BorrowStrategy;
 
 import java.util.List;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 public abstract class Member {
+    
+    private final String Id_user;
     private String nameMember;
-    private String Id_user;
     private String Address;
     private String PhoneNumber;
-    private List<Book> BorrowedBook;
+    private List<Book> BorrowedBooks;
+    private boolean reserveBook;
+    private int TimesBorrowed;
+
+    // constructor
     public Member(String nameMember, String Id_user, String Address, String phoneNumber) {
         this.nameMember = nameMember;
         this.Address = Address;
         this.PhoneNumber = phoneNumber;
         this.Id_user = Id_user;
+        this.reserveBook = false;
     }
 
     // Traditional getter and setter for nameMember
     public String getNameMember() {
         return nameMember;
     }
-
     public void setNameMember(String nameMember) {
         this.nameMember = nameMember;
     }
@@ -34,39 +37,60 @@ public abstract class Member {
         return Id_user;
     }
 
-    public void setId_user(String Id_user) {
-        this.Id_user = Id_user;
-    }
-
+    
     // Getter and setter for Address
     public String getAddress() {
         return Address;
     }
-
     public void setAddress(String Address) {
         this.Address = Address;
     }
 
+    
     // Getter and setter for PhoneNumber
     public String getPhoneNumber() {
         return PhoneNumber;
     }
-
     public void setPhoneNumber(String PhoneNumber) {
         this.PhoneNumber = PhoneNumber;
     }
 
-    // Getter and setter
-
-    public List<Book> getBorrowedBook() {
-        return BorrowedBook;
+    // Getter canReverseBook
+    public boolean getReserveBook() {
+        return reserveBook;
+    }
+    public void setReserveBook(boolean reserveBook) {
+        this.reserveBook = reserveBook;
     }
 
-    public void description() {
+
+    // getters setters for MaxTimesBorrowed
+
+    public int getTimesBorrowed() {
+        return TimesBorrowed;
+    }
+    public void setTimesBorrowed(int maxTimesBorrowed) {
+        TimesBorrowed = maxTimesBorrowed;
+    }
+
+
+    //
+    public List<Book> getBorrowedBook() {
+        return BorrowedBooks;
+    }
+
+    public void setBorrowedBooks(Book borrowedBooks) {
+        this.BorrowedBooks.add(borrowedBooks);
+        int currentTimesBorrowed = getTimesBorrowed();
+        setTimesBorrowed(currentTimesBorrowed--);
+    }
+
+    // get Description
+    public void getDescription() {
         System.out.println("Name member : " + getNameMember() + "\n" +
                 "Phone number :" + getPhoneNumber() + "\n" +
                 "Address : " + getAddress() + "\n" +
-                "Type Member : " + getRole()
+                "Type Member : " + getRole() + "member"
         );
     }
 

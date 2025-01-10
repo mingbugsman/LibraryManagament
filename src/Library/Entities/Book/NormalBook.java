@@ -1,5 +1,6 @@
 package Library.Entities.Book;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class NormalBook extends Book{
@@ -15,6 +16,11 @@ public class NormalBook extends Book{
 
     @Override
     public String getTypeBook() {
-        return "Regular";
+        return "regular";
+    }
+
+    @Override
+    public LocalDate DueReturnBook(LocalDate BorrowedDate) {
+        return null;
     }
 }
