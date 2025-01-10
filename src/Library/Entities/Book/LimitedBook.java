@@ -1,0 +1,20 @@
+package Library.Entities.Book;
+
+public class LimitedBook extends Book{
+    private final double SpecialRentalFee;
+
+    public LimitedBook(String IdBook, String Title, String Author, int Quantity, double SpecialRentalFee) {
+        super(IdBook, Title, Author, Quantity);
+        this.SpecialRentalFee = SpecialRentalFee;
+    }
+
+    @Override
+    public double calculateRentalFee() {
+        return this.SpecialRentalFee;
+    }
+
+    @Override
+    public String getTypeBook() {
+        return "Limited";
+    }
+}
