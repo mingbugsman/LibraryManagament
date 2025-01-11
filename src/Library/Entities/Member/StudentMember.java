@@ -7,7 +7,7 @@ public class StudentMember extends Member {
         super(nameMember, Id_user, Address, phoneNumber);
         this.StudentID = StudentID;
 
-        this.setTimesBorrowed(5);
+        this.setMaxBorrowLimit(5);
     }
     public String getStudentId() {
         return StudentID;
@@ -17,7 +17,7 @@ public class StudentMember extends Member {
     }
 
     @Override
-    public String getRole() {
+    public String geTypeMember() {
         return "student";
     }
 }

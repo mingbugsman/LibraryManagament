@@ -20,8 +20,4 @@ public class LimitedBook extends Book{
         return "limited";
     }
 
-    @Override
-    public LocalDate DueReturnBook(LocalDate BorrowedDate) {
-        return null;
-    }
 }

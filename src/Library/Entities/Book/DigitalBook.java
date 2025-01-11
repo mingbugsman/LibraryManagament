@@ -19,8 +19,5 @@ public class DigitalBook extends Book{
         return "digital";
     }
 
-    @Override
-    public LocalDate DueReturnBook(LocalDate BorrowedDate) {
-        return null;
-    }
+
 }

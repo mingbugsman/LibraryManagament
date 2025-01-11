@@ -19,8 +19,4 @@ public class NormalBook extends Book{
         return "regular";
     }
 
-    @Override
-    public LocalDate DueReturnBook(LocalDate BorrowedDate) {
-        return null;
-    }
 }

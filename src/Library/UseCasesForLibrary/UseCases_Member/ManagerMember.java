@@ -1,26 +1,28 @@
-package Library.UseCasesForLibrary;
+package Library.UseCasesForLibrary.UseCases_Member;
 
 import Library.Entities.Member.Member;
 
 import java.util.List;
 
 public class ManagerMember {
-    private final IMemoryMemberRepository _memberRepository;
+    private final IMemberRepository _memberRepository;
 
 
-    public ManagerMember(IMemoryMemberRepository iMemberRepository) {
+    public ManagerMember(IMemberRepository iMemberRepository) {
         this._memberRepository = iMemberRepository;
     }
 
-    public List<Member> getMembers() {
-        return _memberRepository.getMembers();
+    public boolean isExistedMember(String ID_member) {
+       return  _memberRepository.isExistedMember(ID_member);
     }
-
 
     public Member getMember(String Id_member) {
         return _memberRepository.getMember(Id_member);
     }
 
+    public List<Member> getMembers() {
+        return _memberRepository.getMembers();
+    }
 
     public List<Member> searchMemberByName(String name) {return _memberRepository.searchingMemberByName(name);}
 

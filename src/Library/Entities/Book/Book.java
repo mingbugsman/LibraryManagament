@@ -3,12 +3,11 @@ package Library.Entities.Book;
 import java.time.LocalDate;
 
 public abstract class Book {
-    private String IdBook;
+    private final String IdBook;
     private String Title;
     private String Author;
     private int Quantity;
     private boolean isAvailable; // check if quantity > 0
-    private boolean isLimited;
     public Book(String IdBook, String Title, String Author, int Quantity) {
         this.IdBook = IdBook;
         this.Title = Title;
@@ -17,11 +16,6 @@ public abstract class Book {
         this.isAvailable = true;
     }
     // ID book
-
-    public void setIdBook(String idBook) {
-        IdBook = idBook;
-    }
-
     public String getIdBook() {
         return IdBook;
     }
@@ -57,7 +51,7 @@ public abstract class Book {
 
     // isAvailable
     public boolean isAvailable() {
-        return isAvailable;
+        return this.getQuantity() > 0;
     }
     public void setAvailable(boolean available) {
         isAvailable = available;
@@ -67,8 +61,6 @@ public abstract class Book {
     // abstract //
     public abstract double calculateRentalFee();
     public abstract String getTypeBook();
-    public abstract LocalDate DueReturnBook(LocalDate BorrowedDate);
-
 
     // description
     public void DescriptionBook() {
@@ -77,7 +69,9 @@ public abstract class Book {
                         "Author : " + getAuthor() + "\n" +
                         "Quantity : " + getQuantity() + "\n" +
                         "Rental Free : " + calculateRentalFee() + "\n" +
-                        "Type book : " + getTypeBook()
+                        "Type book : " + getTypeBook() + "\n" +
+                        "Available : " + isAvailable() + "\n" +
+                        "Quantity : " + getQuantity() + "\n"
         );
     }
 }

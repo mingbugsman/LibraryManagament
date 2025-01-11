@@ -18,7 +18,7 @@ public class TypeMemberFactory implements MemberFactory {
     }
 
     @Override
-    public Member createPremiumMember(String nameMember, String Id_user, String Address, String phoneNumber ) {
-        return new PremiumMember(nameMember, Id_user, Address, phoneNumber);
+    public Member createPremiumMember(String nameMember, String Id_user, String Address, String phoneNumber, String PremiumID ) {
+        return new PremiumMember(nameMember, Id_user, Address, phoneNumber,PremiumID);
     }
 }

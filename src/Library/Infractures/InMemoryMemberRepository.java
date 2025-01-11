@@ -1,16 +1,20 @@
 package Library.Infractures;
 import Library.Entities.Member.Member;
-import Library.Factory.MemberFactory.TypeMemberFactory;
-import Library.UseCasesForLibrary.IMemoryMemberRepository;
+import Library.UseCasesForLibrary.UseCases_Member.IMemberRepository;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class InMemoryMemberRepository implements IMemoryMemberRepository {
+public class InMemoryMemberRepository implements IMemberRepository {
     private final List<Member> members;
     public InMemoryMemberRepository() {
         members = new ArrayList<>();
+    }
+
+
+    public boolean isExistedMember(String ID_member) {
+        Member foundMember = getMember(ID_member);
+        return foundMember != null;
     }
 
     // searching member by name
@@ -30,11 +34,8 @@ public class InMemoryMemberRepository implements IMemoryMemberRepository {
 
     // get member by id
     public Member getMember(String Id_user) {
-        Member foundMember = members.stream().filter(member -> member.getId_user().equals(Id_user)).findFirst().orElse(null);
-        if (foundMember == null ) {
-            throw new IllegalArgumentException("Book with ID " + Id_user + " not found");
-        }
-        return foundMember;
+        return members.stream().filter(member -> member.getId_user().equals(Id_user)).findFirst().orElse(null);
+
     }
 
 
@@ -43,12 +44,16 @@ public class InMemoryMemberRepository implements IMemoryMemberRepository {
         if (typeMember == null || typeMember.isBlank()) {
                 throw new IllegalArgumentException("Type of Member cannot be null or empty");
         }
-        return members.stream().filter(member -> member.getRole().equals(typeMember)).toList();
+        return members.stream().filter(member -> member.geTypeMember().equals(typeMember)).toList();
     }
 
     // add member
     public void addMember(Member newMember) {
-        String typeMember = newMember.getRole();
+        if(!isExistedMember(newMember.getId_user())) {
+            members.add(newMember);
+        } else {
+            throw new IllegalArgumentException("Member is existed");
+        }
     }
 
     // remove member

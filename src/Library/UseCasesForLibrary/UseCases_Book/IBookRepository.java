@@ -1,4 +1,4 @@
-package Library.UseCasesForLibrary;
+package Library.UseCasesForLibrary.UseCases_Book;
 
 
 import Library.Entities.Book.Book;
@@ -11,6 +11,7 @@ public interface IBookRepository {
     Book updateBook(Book updateBook);
     Book GetBookByID(String IdBook);
 
+    boolean isExistedBook(String ID_member);
     List<Book> GetAllBooks();
     List<Book> searchBookByTitle(String title);
     List<Book> searchBookByAuthor(String Author);

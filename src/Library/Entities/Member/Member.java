@@ -1,8 +1,9 @@
 package Library.Entities.Member;
 
 import Library.Entities.Book.Book;
-import Library.UseCasesForLibrary.BorrowStrategy.BorrowStrategy;
 
+
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Member {
@@ -11,9 +12,9 @@ public abstract class Member {
     private String nameMember;
     private String Address;
     private String PhoneNumber;
-    private List<Book> BorrowedBooks;
+    private final List<Book> BorrowedBooks;
     private boolean reserveBook;
-    private int TimesBorrowed;
+    private int MaxBorrowLimit;
 
     // constructor
     public Member(String nameMember, String Id_user, String Address, String phoneNumber) {
@@ -22,6 +23,7 @@ public abstract class Member {
         this.PhoneNumber = phoneNumber;
         this.Id_user = Id_user;
         this.reserveBook = false;
+        BorrowedBooks = new ArrayList<>();
     }
 
     // Traditional getter and setter for nameMember
@@ -64,35 +66,34 @@ public abstract class Member {
     }
 
 
-    // getters setters for MaxTimesBorrowed
-
-    public int getTimesBorrowed() {
-        return TimesBorrowed;
+    // getter setter for MaxTimesBorrowed
+    public int getMaxBorrowLimit() {
+        return MaxBorrowLimit;
     }
-    public void setTimesBorrowed(int maxTimesBorrowed) {
-        TimesBorrowed = maxTimesBorrowed;
+    public void setMaxBorrowLimit (int maxTimesBorrowed ) {
+        MaxBorrowLimit = maxTimesBorrowed;
     }
 
 
-    //
+    // getter setter for list borrowed books
     public List<Book> getBorrowedBook() {
         return BorrowedBooks;
     }
-
     public void setBorrowedBooks(Book borrowedBooks) {
         this.BorrowedBooks.add(borrowedBooks);
-        int currentTimesBorrowed = getTimesBorrowed();
-        setTimesBorrowed(currentTimesBorrowed--);
     }
 
-    // get Description
+    // Implement Interface
+
+    // get information member
     public void getDescription() {
         System.out.println("Name member : " + getNameMember() + "\n" +
                 "Phone number :" + getPhoneNumber() + "\n" +
                 "Address : " + getAddress() + "\n" +
-                "Type Member : " + getRole() + "member"
+                "Type Member : " + geTypeMember() + "member"
         );
     }
 
-    public abstract String getRole();
+    // abstract
+    public abstract String geTypeMember();
 }

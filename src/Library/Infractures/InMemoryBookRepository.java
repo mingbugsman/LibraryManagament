@@ -1,7 +1,8 @@
 package Library.Infractures;
 
 import Library.Entities.Book.Book;
-import Library.UseCasesForLibrary.IBookRepository;
+import Library.Entities.Member.Member;
+import Library.UseCasesForLibrary.UseCases_Book.IBookRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +16,30 @@ public class InMemoryBookRepository implements IBookRepository {
         this.Books = new ArrayList<>();
     }
 
+
+    @Override
+    public boolean isExistedBook(String ID_book) {
+        Book foundBook = GetBookByID(ID_book);
+        return foundBook != null;
+    }
+    @Override
+    public Book GetBookByID(String IdBook) {
+        return  Books.stream().filter(book -> book.getIdBook().equals(IdBook)).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<Book> GetAllBooks() {
+        return this.Books;
+    }
     @Override
     public void Add(Book book) {
-        Books.add(book);
+
+        if (!isExistedBook(book.getIdBook())) {
+
+            Books.add(book);
+        } else
+            throw new IllegalArgumentException("Book has ID : " + book.getIdBook() + " is existed");
+
     }
 
     @Override
@@ -38,15 +60,7 @@ public class InMemoryBookRepository implements IBookRepository {
         return foundBook;
     }
 
-    @Override
-    public Book GetBookByID(String IdBook) {
-        return (Book) Books.stream().filter(book -> Objects.equals(book.getIdBook(), IdBook));
-    }
 
-    @Override
-    public List<Book> GetAllBooks() {
-        return this.Books;
-    }
 
 
     // searching book by Title
