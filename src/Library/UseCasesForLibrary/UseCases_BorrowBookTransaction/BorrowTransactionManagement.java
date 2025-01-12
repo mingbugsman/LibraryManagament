@@ -20,12 +20,15 @@ public class BorrowTransactionManagement {
         return _bookTransactionRepository.Update(updateObj);
     }
 
+    public boolean isExistedBookTransaction(String ID_book, String ID_member) {
+        return _bookTransactionRepository.isExistedBookTransaction(ID_book, ID_member);
+    }
     List<BookTransaction> getAll() {
         return _bookTransactionRepository.getAll();
     }
 
-    public BookTransaction getBookTransaction(String ID_member) {
-        return  _bookTransactionRepository.getBookTransaction(ID_member);
+    public BookTransaction getBookTransaction(String ID_member, String ID_book) {
+        return  _bookTransactionRepository.getBookTransaction(ID_member, ID_book);
     }
 
     public List<BookTransaction> getByDuringTime(LocalDate startDate, LocalDate endDate) {

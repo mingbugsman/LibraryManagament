@@ -51,12 +51,4 @@ public class BookTransaction {
         this.ID_book = ID_book;
     }
 
-    // method to calculateOverDueDays
-    public long calculateOverdueDays() {
-        LocalDate currentDate = LocalDate.now();
-        if (currentDate.isAfter(dueDate)) {
-            return ChronoUnit.DAYS.between(dueDate, currentDate);
-        }
-        return 0;
-    }
 }

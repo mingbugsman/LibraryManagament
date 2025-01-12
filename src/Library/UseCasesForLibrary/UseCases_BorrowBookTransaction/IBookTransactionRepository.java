@@ -13,9 +13,11 @@ public interface IBookTransactionRepository {
     void Remove(BookTransaction removeObj);
     BookTransaction Update(BookTransaction updateObj);
 
+    // check
+    boolean isExistedBookTransaction(String ID_book, String ID_member);
     // get
     List<BookTransaction> getAll();
-    BookTransaction getBookTransaction(String ID_member);
+    BookTransaction getBookTransaction(String ID_member,String ID_book);
     List<BookTransaction> getByDuringTime(LocalDate startDate, LocalDate endDate);
 
 }

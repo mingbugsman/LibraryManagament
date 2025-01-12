@@ -25,7 +25,7 @@ public class InMemoryBookTransactionRepository implements IBookTransactionReposi
     }
     
     // does borrow book duplicate ?
-    private boolean isExistedBookTransaction(String ID_book, String ID_member) {
+    public boolean isExistedBookTransaction(String ID_book, String ID_member) {
         if (ID_book.trim().isEmpty()) {
             throw new IllegalArgumentException("NOT FOUND ID BOOK");
         }
@@ -97,7 +97,7 @@ public class InMemoryBookTransactionRepository implements IBookTransactionReposi
 
     @Override
     public BookTransaction Update(BookTransaction updateObj) {
-        BookTransaction foundBookTransaction = getBookTransaction(updateObj.getID_member());
+        BookTransaction foundBookTransaction = getBookTransaction(updateObj.getID_member(), updateObj.getID_Book());
         if (foundBookTransaction == null) {
             throw new IllegalArgumentException("NOT FOUND ID MEMBER IN LIST BookTransaction");
         }
@@ -114,9 +114,10 @@ public class InMemoryBookTransactionRepository implements IBookTransactionReposi
     }
 
     @Override
-    public BookTransaction getBookTransaction(String ID_member) {
+    public BookTransaction getBookTransaction(String ID_member,String ID_book) {
         return BookTransactions.stream().filter(BookTransaction ->
-                BookTransaction.getID_member().equals(ID_member))
+                BookTransaction.getID_member().equals(ID_member)
+                && BookTransaction.getID_Book().equals(ID_book))
                 .findFirst()
                 .orElse(null);
     }

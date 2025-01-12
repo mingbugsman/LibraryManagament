@@ -3,7 +3,7 @@ package Library.LibraryManager.BorrowManager;
 import Library.Entities.Book.Book;
 import Library.Entities.BookTransaction.BookTransaction;
 import Library.Entities.Member.Member;
-import Library.ErrorManagement.BorrowedException.BorrowException;
+import Library.ErrorManagement.BorrowException;
 import Library.UseCasesForLibrary.UseCases_Book.ManagerBook;
 import Library.UseCasesForLibrary.UseCases_BorrowBookTransaction.BorrowTransactionManagement;
 import Library.UseCasesForLibrary.UseCases_Member.ManagerMember;

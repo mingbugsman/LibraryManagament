@@ -2,7 +2,7 @@ package Library.LibraryManager.BorrowManager;
 
 import Library.Entities.Book.Book;
 import Library.Entities.Member.Member;
-import Library.ErrorManagement.BorrowedException.BorrowException;
+import Library.ErrorManagement.BorrowException;
 
 import java.time.LocalDate;
 import java.util.List;
