@@ -11,6 +11,7 @@ public interface IBookTransactionRepository {
     // add, remove, update
     void Add(BookTransaction addObj);
     void Remove(BookTransaction removeObj);
+    void RemoveWhenBookisReturned(String memberID, String bookID);
     BookTransaction Update(BookTransaction updateObj);
 
     // check

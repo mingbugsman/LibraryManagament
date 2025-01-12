@@ -96,6 +96,16 @@ public class InMemoryBookTransactionRepository implements IBookTransactionReposi
     }
 
     @Override
+    public void RemoveWhenBookisReturned(String memberID, String bookID) {
+        if (isExistedBookTransaction(memberID, bookID)) {
+            BookTransaction foundObj = getBookTransaction(memberID, bookID);
+            Remove(foundObj);
+            Book book = managerBook.getBook(bookID);
+            managerMember.getMember(memberID).getBorrowedBook().remove(book);
+        }
+    }
+
+    @Override
     public BookTransaction Update(BookTransaction updateObj) {
         BookTransaction foundBookTransaction = getBookTransaction(updateObj.getID_member(), updateObj.getID_Book());
         if (foundBookTransaction == null) {
