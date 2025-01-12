@@ -7,7 +7,7 @@ import Library.Infractures.InMemoryBookRepository;
 import Library.Infractures.InMemoryBookTransactionRepository;
 import Library.Infractures.InMemoryMemberRepository;
 import Library.LibraryManager.BorrowManager.BorrowManager;
-import Library.LibraryManager.BorrowManager.BorrowsStrategy;
+import Library.LibraryManager.BorrowManager.BorrowStrategy;
 import Library.LibraryManager.BorrowManager.IBorrowStrategy;
 import Library.Ulti.IntializeListEntity.InitializeListBook;
 import Library.Ulti.IntializeListEntity.InitializeListMember;
@@ -44,7 +44,7 @@ public class Program {
         IBookTransactionRepository bookTransactionRepository = new InMemoryBookTransactionRepository(managerMember, managerBook);
         BorrowTransactionManagement borrowTransactionManagement = new BorrowTransactionManagement(bookTransactionRepository);
 
-        IBorrowStrategy borrowStrategy = BorrowsStrategy.createBorrowsStrategy(borrowTransactionManagement,managerBook, managerMember);
+        IBorrowStrategy borrowStrategy = BorrowStrategy.createBorrowStrategy(borrowTransactionManagement,managerBook, managerMember);
         BorrowManager borrowManager = new BorrowManager();
 
 
