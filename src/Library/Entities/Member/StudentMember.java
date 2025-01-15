@@ -20,4 +20,9 @@ public class StudentMember extends Member {
     public String geTypeMember() {
         return "student";
     }
+
+    @Override
+    public void getNotification(String context) {
+
+    }
 }

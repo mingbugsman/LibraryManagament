@@ -2,12 +2,9 @@ package Library.Infractures;
 
 import Library.Entities.Book.Book;
 import Library.Entities.BookReturnDetail.BookReturnDetail;
-import Library.Entities.BookTransaction.BookTransaction;
 import Library.Entities.Member.Member;
 import Library.ErrorManagement.ReturnBookException;
 import Library.UseCasesForLibrary.UseCases_Book.ManagerBook;
-import Library.UseCasesForLibrary.UseCases_BorrowBookTransaction.BorrowTransactionManagement;
-import Library.UseCasesForLibrary.UseCases_Member.ManagerMember;
 import Library.UseCasesForLibrary.UseCases_ReturnBook.IReturnBookRepository;
 
 import java.time.LocalDate;
@@ -18,10 +15,13 @@ import java.util.List;
 
 public class InMemoryReturnBookRepository implements IReturnBookRepository {
     private final List<BookReturnDetail> bookReturnDetailList;
+    private final ManagerBook managerBook;
+    //private final ManagerMember managerMember;
 
-    public InMemoryReturnBookRepository(BorrowTransactionManagement borrowTransactionManagement, ManagerMember managerMember,ManagerBook managerBook) {
+    // constructor
+    public InMemoryReturnBookRepository(ManagerBook managerBook) {
         bookReturnDetailList = new ArrayList<>();
-
+        this.managerBook = managerBook;
     }
     @Override
     public void addBookReturnDetail(Member member, Book book, LocalDate dueReturnDate) throws ReturnBookException {
@@ -49,6 +49,13 @@ public class InMemoryReturnBookRepository implements IReturnBookRepository {
         foundDetail.setDueReturnDate(updateDetail.getDueReturnDate());
         foundDetail.setReturnDate(updateDetail.getReturnDate());
         foundDetail.setLateFee(updateDetail.getLateFee());
+
+        // update quantity book and available ?
+        Book returnedBook = managerBook.getBook(ID_book);
+        returnedBook.setQuantity(returnedBook.getQuantity()+1);
+        if (!returnedBook.isAvailable()) {
+            returnedBook.setAvailable(true);
+        }
         System.out.println("Successfully update detail");
     }
 

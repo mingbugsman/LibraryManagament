@@ -96,4 +96,5 @@ public abstract class Member {
 
     // abstract
     public abstract String geTypeMember();
+    public abstract void getNotification(String context);
 }

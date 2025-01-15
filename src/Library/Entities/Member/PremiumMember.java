@@ -18,6 +18,11 @@ public class PremiumMember extends Member{
         return "premium";
     }
 
+    @Override
+    public void getNotification(String context) {
+        System.out.println(context);
+    }
+
     public double getMembershipFee() {
         return membershipFee;
     }

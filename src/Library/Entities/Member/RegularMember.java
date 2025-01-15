@@ -10,4 +10,9 @@ public class RegularMember extends Member {
     public String geTypeMember() {
         return "regular";
     }
+
+    @Override
+    public void getNotification(String context) {
+
+    }
 }
